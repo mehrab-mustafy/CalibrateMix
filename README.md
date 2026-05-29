@@ -8,6 +8,8 @@ Links:
 - arXiv: [ARXIV_LINK_HERE](https://arxiv.org/abs/2511.12964)
 - Base framework: [USB_Paper](https://arxiv.org/abs/2208.07204) , [USB_Repo](https://github.com/microsoft/Semi-supervised-learning)
 
+working versions for CalibrateMix with FixMatch and FlexMatch will be updated soon!
+
 ## Installation
 
 Create and activate a Python environment, then install the requirements:
