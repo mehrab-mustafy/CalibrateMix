@@ -4,36 +4,9 @@ Official implementation for **CalibrateMix**, a semi-supervised learning method 
 
 Links:
 
-- Paper: PAPER_LINK_HERE
-- arXiv: ARXIV_LINK_HERE
-- Base framework: USB_REPO_LINK_HERE
-
-## Overview
-
-This repository contains the CalibrateMix implementation used for classic computer vision semi-supervised learning experiments. The main algorithm is registered as:
-
-```text
-softmatch_calibratemix
-```
-
-The implementation is located at:
-
-```text
-semilearn/algorithms/softmatch/softmatch_calibratemix.py
-```
-
-CalibrateMix keeps the SoftMatch training objective and adds an AUM/APM-based post-warmup mixup stage. During warmup, the model trains with the standard SoftMatch loss. After warmup, the method estimates labeled sample difficulty and unlabeled pseudo-label margin in memory, splits batches into easy and hard groups, and applies mixup between complementary groups.
-
-## Repository Structure
-
-```text
-config/classic_cv/softmatch/        CalibrateMix experiment YAML files
-semilearn/algorithms/softmatch/     SoftMatch and CalibrateMix implementations
-semilearn/                          USB / semilearn training framework
-eval.py                            Standalone checkpoint evaluation script
-train.py                           Training entrypoint
-requirements.txt                   Python dependencies
-```
+- Paper: [PAPER_LINK_HERE](https://ojs.aaai.org/index.php/AAAI/article/view/39696)
+- arXiv: [ARXIV_LINK_HERE](https://arxiv.org/abs/2511.12964)
+- Base framework: [USB_Paper](https://arxiv.org/abs/2208.07204) , [USB_Repo](https://github.com/microsoft/Semi-supervised-learning)
 
 ## Installation
 
@@ -87,30 +60,6 @@ The configs save checkpoints under:
 saved_models/classic_cv/
 ```
 
-## Important Config Options
-
-The YAML files use:
-
-```yaml
-algorithm: softmatch_calibratemix
-amp: True
-```
-
-For CIFAR-100 experiments, the backbone is set to:
-
-```yaml
-net: wrn_28_8
-```
-
-CalibrateMix-specific arguments have defaults in the algorithm file:
-
-```yaml
-apm_delta: 0.997
-apm_warmup_iter: 150000
-```
-
-These can be added to a YAML file if you want the warmup and APM smoothing settings to be explicit.
-
 ## Evaluation
 
 Evaluate a saved checkpoint with:
@@ -120,10 +69,8 @@ python eval.py \
   --dataset cifar10 \
   --num_classes 10 \
   --net wrn_28_2 \
-  --load_path saved_models/classic_cv/softmatch_calibratemix_cifar10_40_0/latest_model.pth
+  --load_path saved_models/classic_cv/softmatch_calibratemix_cifar10_40_0/model_best.pth
 ```
-
-For CIFAR-100 checkpoints, use `--num_classes 100` and `--net wrn_28_8`.
 
 The evaluation script reports:
 
@@ -133,49 +80,37 @@ Test Error Rate
 Test ECE
 ```
 
-ECE uses 10 confidence bins by default. You can override this with:
-
-```bash
---ece_bins 10
-```
-
-## Method Notes
-
-CalibrateMix stores labeled AUM and unlabeled pseudo-margin statistics in memory during training and saves them in checkpoints. This avoids repeatedly writing and reading CSV files during the post-warmup stage and allows resumed runs to keep the difficulty estimates.
-
-The post-warmup mixup stage begins when:
-
-```text
-iteration > apm_warmup_iter
-```
-
 ## Acknowledgments
 
 This codebase is based on the USB / semilearn framework. Please cite and acknowledge USB when using this repository.
-
-- USB repository: USB_REPO_LINK_HERE
-- USB paper: USB_PAPER_LINK_HERE
 
 ## Citation
 
 If you find this repository useful, please cite our paper:
 
 ```bibtex
-@article{calibratemix,
-  title   = {CALIBRATEMIX_TITLE_HERE},
-  author  = {AUTHOR_LIST_HERE},
-  journal = {ARXIV_OR_VENUE_HERE},
-  year    = {YEAR_HERE}
+@inproceedings{rahman2026calibration,
+  title={On the Calibration of Image Semi-Supervised Learning Models},
+  author={Rahman, Mehrab Mustafy and Mohan, Jayanth and Sosea, Tiberiu and Caragea, Cornelia},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={40},
+  number={30},
+  pages={25073--25081},
+  year={2026}
 }
 ```
 
 Please also cite the USB framework:
 
 ```bibtex
-@inproceedings{usb,
-  title     = {USB: A Unified Semi-supervised Learning Benchmark for Classification},
-  author    = {Wang, Yidong and Chen, Hao and Fan, Yue and Sun, Wang and Tao, Ran and Hou, Wenxin and Wang, Ran and Yang, Linyi and Zhou, Zhi and Guo, Lan-Zhe and Qi, Heli and Wu, Zhen and Li, Yu-Feng and Nakamura, Satoshi and Ye, Wei and Savvides, Marios and Raj, Bhiksha and Shinozaki, Takahiro and Schiele, Bernt and Xie, Xing and Zhang, Yue and Sugiyama, Masashi and Liu, Weiyang and Smith, Noah A. and Wang, Wen-tau and Jia, Xu and Li, Bo},
-  booktitle = {NeurIPS Datasets and Benchmarks},
-  year      = {2022}
+@inproceedings{usb2022,
+  doi = {10.48550/ARXIV.2208.07204},
+  url = {https://arxiv.org/abs/2208.07204},
+  author = {Wang, Yidong and Chen, Hao and Fan, Yue and Sun, Wang and Tao, Ran and Hou, Wenxin and Wang, Renjie and Yang, Linyi and Zhou, Zhi and Guo, Lan-Zhe and Qi, Heli and Wu, Zhen and Li, Yu-Feng and Nakamura, Satoshi and Ye, Wei and Savvides, Marios and Raj, Bhiksha and Shinozaki, Takahiro and Schiele, Bernt and Wang, Jindong and Xie, Xing and Zhang, Yue},
+  title = {USB: A Unified Semi-supervised Learning Benchmark for Classification},
+  booktitle = {Thirty-sixth Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+  year = {2022}
 }
 ```
+
+
