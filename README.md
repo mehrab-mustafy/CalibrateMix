@@ -82,7 +82,12 @@ Test ECE
 
 ## Acknowledgments
 
-This codebase is based on the USB / semilearn framework. Please cite and acknowledge USB when using this repository.
+This codebase is based on the USB / semilearn framework. Please cite and acknowledge USB when using this repository. We also thank the following projects for their inspiring work:
+[FixMatch](https://arxiv.org/abs/2001.07685)
+[FlexMatch](https://arxiv.org/abs/2110.08263)
+[SoftMatch](https://arxiv.org/abs/2301.10921)
+
+
 
 ## Citation
 
@@ -99,18 +104,3 @@ If you find this repository useful, please cite our paper:
   year={2026}
 }
 ```
-
-Please also cite the USB framework:
-
-```bibtex
-@inproceedings{usb2022,
-  doi = {10.48550/ARXIV.2208.07204},
-  url = {https://arxiv.org/abs/2208.07204},
-  author = {Wang, Yidong and Chen, Hao and Fan, Yue and Sun, Wang and Tao, Ran and Hou, Wenxin and Wang, Renjie and Yang, Linyi and Zhou, Zhi and Guo, Lan-Zhe and Qi, Heli and Wu, Zhen and Li, Yu-Feng and Nakamura, Satoshi and Ye, Wei and Savvides, Marios and Raj, Bhiksha and Shinozaki, Takahiro and Schiele, Bernt and Wang, Jindong and Xie, Xing and Zhang, Yue},
-  title = {USB: A Unified Semi-supervised Learning Benchmark for Classification},
-  booktitle = {Thirty-sixth Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
-  year = {2022}
-}
-```
-
-
