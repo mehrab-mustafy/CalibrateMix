@@ -49,10 +49,8 @@ config/classic_cv/softmatch/softmatch_cifar100_400_0.yaml
 config/classic_cv/softmatch/softmatch_cifar100_2500_0.yaml
 config/classic_cv/softmatch/softmatch_cifar100_10000_0.yaml
 config/classic_cv/softmatch/softmatch_svhn_40_0.yaml
-config/classic_cv/softmatch/softmatch_svhn_250_0.yaml
 config/classic_cv/softmatch/softmatch_svhn_1000_0.yaml
 config/classic_cv/softmatch/softmatch_stl10_40_0.yaml
-config/classic_cv/softmatch/softmatch_stl10_250_0.yaml
 config/classic_cv/softmatch/softmatch_stl10_1000_0.yaml
 ```
 
